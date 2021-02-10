@@ -7,8 +7,16 @@ const baseUrl = `https://emoji-api.com/emojis?access_key=${API_KEY}`;
 
 const getAll = async () => {
   const response = await axios.get(baseUrl);
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 };
 
-export default { getAll };
+const getEmoji = async (slug) => {
+  const response = await axios.get(
+    `https://emoji-api.com/emojis/${slug}?access_key=${API_KEY}`
+  );
+  // console.log(response.data);
+  return response.data;
+};
+
+export default { getAll, getEmoji };
