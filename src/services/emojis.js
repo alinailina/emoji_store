@@ -15,7 +15,7 @@ const getEmoji = async (slug) => {
   const response = await axios.get(
     `https://emoji-api.com/emojis/${slug}?access_key=${API_KEY}`
   );
-  // console.log(response.data);
+  // console.log("service", response.data);
   return response.data;
 };
 

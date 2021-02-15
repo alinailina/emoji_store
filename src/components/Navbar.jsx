@@ -1,17 +1,36 @@
 import React from "react";
+import { useTheme } from "../contexts/ThemeContext";
 import { NavLink } from "react-router-dom";
-import Search from "./Search";
 import { useSelector } from "react-redux";
+import { AiOutlineShopping } from "react-icons/ai";
+
+import Search from "./Search";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
-  const inCart = useSelector((state) => state.cart.length);
+  const inCart = useSelector(
+    (state) => state.emojis.emojis.filter((e) => e.inCart === true).length
+  );
+
+  const darkTheme = useTheme();
+
+  const themeStyles = {
+    backgroundColor: darkTheme ? "#dee1e6" : "white",
+  };
 
   return (
-    <nav>
-      <NavLink to="/">Emoji store</NavLink>
+    <nav style={themeStyles}>
+      <div>
+        <ThemeToggle />
+        <NavLink to="/" id="nav-name">
+          Emoji store
+        </NavLink>
+      </div>
+
       <Search />
-      <NavLink to="/cart">
-        Cart<sup>{inCart}</sup>
+      <NavLink to="/cart" id="nav-cart">
+        <AiOutlineShopping />
+        <sup>{inCart}</sup>
       </NavLink>
     </nav>
   );

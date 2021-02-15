@@ -1,4 +1,4 @@
-const searchReducer = (state = "", action) => {
+const search = (state = "", action) => {
   switch (action.type) {
     case "SEARCH":
       return action.query;
@@ -15,4 +15,4 @@ export const setQuery = (query) => {
   };
 };
 
-export default searchReducer;
+export default search;

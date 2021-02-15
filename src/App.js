@@ -2,34 +2,38 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 // import emojiService from "./services/emojis";
-import { initializeEmojis } from "./reducers/emojiReducer";
+import { initEmojis } from "./reducers/emojis";
 
 import Navbar from "./components/Navbar";
-import Details from "./components/Details";
+
+import ScrollToTop from "./components/ScrollToTop";
+import BackToTop from "./components/BackToTop";
+import DetailView from "./components/DetailView";
 import Emojis from "./components/Emojis";
 import Cart from "./components/Cart";
+
+import ThemeProvider from "./contexts/ThemeContext";
 
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   emojiService.getAll().then((emojis) => dispatch(initializeEmojis(emojis)));
-  // }, [dispatch]);
-
   useEffect(() => {
-    dispatch(initializeEmojis());
+    dispatch(initEmojis());
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <Navbar />
-
-      <Switch>
-        <Route exact path="/" component={Emojis} />
-        <Route path="/details" component={Details} />
-        <Route path="/cart" component={Cart} />
-      </Switch>
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <ScrollToTop />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Emojis} />{" "}
+          <Route path="/cart" component={Cart} />{" "}
+          <Route path="/:name" component={DetailView} />
+        </Switch>
+        <BackToTop />
+      </div>
+    </ThemeProvider>
   );
 }
 

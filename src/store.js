@@ -2,16 +2,14 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import emojiReducer from "./reducers/emojiReducer";
-import searchReducer from "./reducers/searchReducer";
-import cartReducer from "./reducers/cartReducer";
-import filterReducer from "./reducers/filterReducer";
+import emojis from "./reducers/emojis";
+import search from "./reducers/search";
+import filter from "./reducers/filter";
 
 const reducers = combineReducers({
-  emojis: emojiReducer,
-  search: searchReducer,
-  cart: cartReducer,
-  filter: filterReducer,
+  emojis: emojis,
+  search: search,
+  filter: filter,
 });
 
 const store = createStore(

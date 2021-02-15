@@ -1,25 +1,48 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
 
-import Emoji from "./Emoji";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
-  // console.log(cart);
+  const inCart = useSelector((state) =>
+    state.emojis.emojis.filter((e) => e.inCart === true)
+  );
+
+  const counts = inCart
+    .map((e) => e.count)
+    .reduce((a, b) => {
+      return a + b;
+    }, 0);
+
+  const confused = useSelector((state) =>
+    state.emojis.emojis.find((e) => e.slug === "confused-face")
+  );
+
+  const darkTheme = useTheme();
+  const themeStyles = {
+    backgroundColor: darkTheme ? "#dee1e6" : "white",
+  };
 
   return (
-    <div id="cart">
+    <div id="cart" style={themeStyles}>
       <ul>
-        {cart.length ? (
-          cart.map((emoji) => <Emoji key={emoji.slug} emoji={emoji} />)
+        {inCart.length ? (
+          inCart.map((emoji) => <CartItem key={emoji.slug} emoji={emoji} />)
         ) : (
-          <div>
+          <li className="empty">
+            <h2>{confused.character}</h2>
             <p>Your bag is empty</p>
             <Link to="/">Continue shopping</Link>
-          </div>
+          </li>
         )}
       </ul>
+      {inCart.length ? (
+        <div>
+          <p>Total: {counts}</p>
+        </div>
+      ) : null}
     </div>
   );
 };

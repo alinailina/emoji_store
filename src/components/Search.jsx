@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setQuery } from "../reducers/searchReducer";
+import { setQuery } from "../reducers/search";
+
+import { BiSearch } from "react-icons/bi";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -9,7 +11,14 @@ const Search = () => {
     dispatch(setQuery(e.target.value));
   };
 
-  return <input type="text" onChange={handleChange} />;
+  return (
+    <div id="search">
+      <span>
+        <BiSearch />
+      </span>
+      <input type="text" onChange={handleChange} />
+    </div>
+  );
 };
 
 export default Search;
