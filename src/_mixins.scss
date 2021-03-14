@@ -1,0 +1,66 @@
+// Media queries
+@mixin phone {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 769px) and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+// Font-sizes
+@mixin S {
+  font-size: 1rem;
+  @include tablet {
+    font-size: 1.25rem;
+  }
+  @include desktop {
+    font-size: 1.5vw;
+  }
+}
+
+@mixin L {
+  font-size: 1.25rem;
+  @include tablet {
+    font-size: 1.75rem;
+  }
+  @include desktop {
+    font-size: 2vw;
+  }
+}
+
+@mixin XL {
+  font-size: 3rem;
+  @include tablet {
+    font-size: 3rem;
+  }
+  @include desktop {
+    font-size: 5vw;
+  }
+  font-weight: 400;
+}
+
+@mixin XL {
+  font-size: 3rem;
+  @include tablet {
+    font-size: 3rem;
+  }
+  @include desktop {
+    font-size: 5vw;
+  }
+  font-weight: 400;
+}

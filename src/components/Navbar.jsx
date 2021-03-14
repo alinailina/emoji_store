@@ -3,6 +3,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AiOutlineShopping } from "react-icons/ai";
+import { RiHomeLine } from "react-icons/ri";
 
 import Search from "./Search";
 import ThemeToggle from "./ThemeToggle";
@@ -23,10 +24,9 @@ const Navbar = () => {
       <div>
         <ThemeToggle />
         <NavLink to="/" id="nav-name">
-          Emoji store
+          <RiHomeLine />
         </NavLink>
       </div>
-
       <Search />
       <NavLink to="/cart" id="nav-cart">
         <AiOutlineShopping />
